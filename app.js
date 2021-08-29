@@ -35,7 +35,7 @@ function onSuccess(googleUser) {
 
 // Sign-in failure callback
 function onFailure(error) {
-    alert('Error : ' + error);
+    alert(error);
 }
 
 // Sign out the user
