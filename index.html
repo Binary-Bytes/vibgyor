@@ -20,6 +20,7 @@
     <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta name="google-signin-client_id" content="509754061437-cbnfjn9mstk5957anuiauuu4tqfh05ua.apps.googleusercontent.com">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
 </head>
 
@@ -62,6 +63,9 @@
 
                     document.getElementById("gSignIn").style.display = "none";
                     document.getElementsByClassName("userContent")[0].style.display = "block";
+
+                    // Save user data
+                    saveUserData(resp);
                 });
             });
         }
@@ -81,6 +85,14 @@
             });
 
             auth2.disconnect();
+        }
+
+        // Save user data to the database
+        function saveUserData(userData) {
+            $.post('userData.php', {
+                oauth_provider: 'google',
+                userData: JSON.stringify(userData)
+            });
         }
     </script>
 </body>
